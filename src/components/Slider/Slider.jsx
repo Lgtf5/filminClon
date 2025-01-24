@@ -3,15 +3,15 @@ import { Box, IconButton, Card, CardContent, Typography } from "@mui/material";
 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import { useMovies } from "../../hooks/useMovies"
 
 
-
-const Slider = ({ movies }) => {
+const Slider = (props) => {
     const containerRef = useRef(null);
-    const results = movies.results || [];
+    const results = useMovies(props.page);
     const [currentIndex, setCurrentIndex] = useState(0);
-
     const totalPages = results.length; // Cada Card es una página
+
 
     const scrollToIndex = (index) => {
         const { current } = containerRef;
@@ -75,7 +75,7 @@ const Slider = ({ movies }) => {
                         },
                     }}
                 >
-                    <NavigateBeforeIcon sx={{ color: "#A9A8A8CC", sizeObject: "24px", fontSize: "80px" }} />
+                    <NavigateBeforeIcon sx={{ color: "#A9A8A8CC", sizeObject: "32px", fontSize: "90px" }} />
                 </IconButton>
             )}
 
@@ -83,7 +83,7 @@ const Slider = ({ movies }) => {
             <Box
                 ref={containerRef}
                 sx={{
-
+                
                     display: "flex",
                     overflow: "hidden",
                     scrollBehavior: "smooth",
@@ -97,7 +97,7 @@ const Slider = ({ movies }) => {
                         key={index}
                         sx={{
                             minWidth: "100%",
-                            minHeight: "20vh",
+                            minHeight: "45vh",
                             position: "relative",
                             flex: "0 0 100%",
                             display: "flex",
@@ -115,7 +115,7 @@ const Slider = ({ movies }) => {
 
 
                         <Box
-                        
+
                             sx={{
                                 width: "100%",
                                 height: "100%",
@@ -128,6 +128,7 @@ const Slider = ({ movies }) => {
 
                         <CardContent
                             sx={{
+                                
                                 position: "absolute",
                                 bottom: "0px",
                                 width: "100%",
@@ -163,7 +164,7 @@ const Slider = ({ movies }) => {
                         },
                     }}
                 >
-                    <NavigateNextIcon sx={{ color: "#A9A8A8CC", sizeObject: "24px", fontSize: "80px" }} />
+                    <NavigateNextIcon sx={{ color: "#A9A8A8CC", sizeObject: "32px", fontSize: "90px" }} />
                 </IconButton>
             )}
 
